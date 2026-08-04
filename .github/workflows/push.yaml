@@ -21,7 +21,8 @@ jobs:
           REGISTRY_USER: ${{ secrets.REGISTRY_USER }}
           REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
         run: |
-          $(nix-build nix -A image) > oci.tar
+          nix-build nix -A image -o oci-link
+          cp oci-link oci.tar
           IMAGE_FULLNAME=$(tar -axf oci.tar manifest.json -O | jq -r '.[0].RepoTags[0]')
           skopeo copy --insecure-policy --dest-creds \
             "$REGISTRY_USER:$REGISTRY_PASSWORD" \
