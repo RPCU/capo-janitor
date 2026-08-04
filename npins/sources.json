@@ -1,0 +1,18 @@
+{
+  "pins": {
+    "capi-janitor-openstack-go": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "azimuth-cloud",
+        "repo": "capi-janitor-openstack-go"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "a3e2561b1e81b61f233f86946c2519a0ebd27f4c",
+      "url": "https://github.com/azimuth-cloud/capi-janitor-openstack-go/archive/a3e2561b1e81b61f233f86946c2519a0ebd27f4c.tar.gz",
+      "hash": "sha256-g7OXuWQKcCjbCsDBTH3gt7WX9Im6fSRp3KP6xPTss8g="
+    }
+  },
+  "version": 8
+}

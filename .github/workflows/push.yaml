@@ -22,8 +22,10 @@ jobs:
           REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
         run: |
           nix-build nix -A image -o oci-link
-          cp oci-link oci.tar
-          IMAGE_FULLNAME=$(tar -axf oci.tar manifest.json -O | jq -r '.[0].RepoTags[0]')
+          # buildLayeredImage produces a gzipped tar; skopeo's docker-archive
+          # transport needs an uncompressed tar.
+          gzip -dc oci-link > oci.tar
+          IMAGE_FULLNAME=$(tar -xf oci.tar manifest.json -O | jq -r '.[0].RepoTags[0]')
           skopeo copy --insecure-policy --dest-creds \
             "$REGISTRY_USER:$REGISTRY_PASSWORD" \
             docker-archive:oci.tar \
@@ -35,7 +37,7 @@ jobs:
             docker-archive:oci.tar \
             docker://zot.rpcu.io/public/capi-janitor-openstack-go:"$SHORT_SHA"
 
-          UPSTREAM_REV=$(grep 'upstreamRev' nix/default.nix | sed 's/.*"\(.*\)".*/\1/')
+          UPSTREAM_REV=$(jq -r '.pins["capi-janitor-openstack-go"].revision' npins/sources.json)
           TAGS=$(curl -sf "https://api.github.com/repos/azimuth-cloud/capi-janitor-openstack-go/git/commits/$UPSTREAM_REV/refs/tags" | jq -r '.[].ref' | sed 's|refs/tags/||' || true)
           for TAG in $TAGS; do
             skopeo copy --insecure-policy --dest-creds \

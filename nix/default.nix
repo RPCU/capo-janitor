@@ -1,14 +1,10 @@
 {
   pkgs ? import ./nixpkgs.nix,
-  upstreamRev ? "a3e2561b1e81b61f233f86946c2519a0ebd27f4c",
+  sources ? import ../npins,
 }:
 let
-  upstreamSrc = pkgs.fetchFromGitHub {
-    owner = "azimuth-cloud";
-    repo = "capi-janitor-openstack-go";
-    rev = upstreamRev;
-    hash = "sha256-g7OXuWQKcCjbCsDBTH3gt7WX9Im6fSRp3KP6xPTss8g="; # replace after first build
-  };
+  # Upstream source, pinned by npins. Update with `npins update`.
+  upstreamSrc = sources.capi-janitor-openstack-go;
 
   # Build the manager binary for a given package set (native or cross).
   buildManager =
