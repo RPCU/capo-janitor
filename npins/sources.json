@@ -9,9 +9,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "8a9d8693939169fa63b5e4e7ba691818bb3ddada",
-      "url": "https://github.com/azimuth-cloud/capi-janitor-openstack-go/archive/8a9d8693939169fa63b5e4e7ba691818bb3ddada.tar.gz",
-      "hash": "sha256-GBkJ/s1krKE8E0TLj4pyHbCQmvYrdwAWzkfWHzHmias="
+      "revision": "a07ee1e81e6cda110e5fae05bae56bd79072706a",
+      "url": "https://github.com/azimuth-cloud/capi-janitor-openstack-go/archive/a07ee1e81e6cda110e5fae05bae56bd79072706a.tar.gz",
+      "hash": "sha256-JSElo9Y/lNybtTqMpoUTi6IBvy6KBAzpmV0rTtcpiPY="
     }
   },
   "version": 8
