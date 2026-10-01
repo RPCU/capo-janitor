@@ -20,7 +20,7 @@ let
         "-w"
       ];
       # Run `nix-build nix -A manager` once; it will fail and print the real hash.
-      vendorHash = "sha256-QEmjekl3AfSdVLkVVal7CyL7R2lxtN0SNXoUqI1Q+v4=";
+      vendorHash = "sha256-VbUZAmZtuSSa611i4xxI/1alwMSUAm84OSNfhk00vSk=";
       postInstall = ''
         mv $out/bin/cmd $out/bin/manager
       '';
